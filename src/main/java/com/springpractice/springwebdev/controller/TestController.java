@@ -1,7 +1,9 @@
 package com.springpractice.springwebdev.controller;
 
+import com.springpractice.springwebdev.Service.TodoService;
 import com.springpractice.springwebdev.dto.ResponseDTO;
 import com.springpractice.springwebdev.dto.TestRequestBodyDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("test")
+@RequestMapping("todo")
 public class TestController {
+
+    @Autowired
+    private TodoService todoService;
+
+
 
     @GetMapping
     public String testController(){
@@ -45,4 +52,13 @@ public class TestController {
         return ResponseEntity.ok().body(response);
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<?> testTodo(){
+
+        String str = todoService.testService();
+        List<String> list = new ArrayList();
+        list.add(str);
+        ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
+        return ResponseEntity.ok().body(response);
+    }
 }
