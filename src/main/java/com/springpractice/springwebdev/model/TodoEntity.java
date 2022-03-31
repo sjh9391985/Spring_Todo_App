@@ -27,4 +27,8 @@ public class TodoEntity {
     private String userId; // 오브젝트 생성한 사용자 id
     private String title; // Todo 타이틀
     private Boolean done; // true 경우, todo 완료
+
+    public Boolean isDone() {
+        return true;
+    }
 }
